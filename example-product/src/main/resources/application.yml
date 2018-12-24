@@ -1,0 +1,16 @@
+server:
+  port: 6811
+spring:
+  application:
+    name: example-product
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://example:123456@127.0.0.1:6800/eureka/,http://example:123456@127.0.0.1:6801/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+logging:
+  file: ${spring.application.name}.log

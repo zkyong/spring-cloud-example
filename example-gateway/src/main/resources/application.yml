@@ -1,0 +1,25 @@
+server:
+  port: 6830
+spring:
+  application:
+    name: example-gateway
+zuul:
+  ignored-services: /hello-service/**
+  routes:
+    product-service: #这个名字可以随便取，自己能区分就行
+      path: /product-service/** #拦截的路径，比如 http://192.168.0.239:6830/product-service/product/1
+      #url: http://192.168.0.239:6811 #URL方式配置请求路径，上面的路径会转发到 http://192.168.0.239:6811/product/1
+      service-id: example-product #面向服务方式配置请求路径
+    order-service: #这个名字可以随便取，自己能区分就行
+      path: /order-service/** #拦截的路径，比如 http://192.168.0.239:6830/order-service/order/OID1234567890
+      service-id: example-order #面向服务方式配置请求路径
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://example:123456@192.168.0.239:6800/eureka/,http://example:123456@192.168.0.239:6801/eureka/
+  instance:
+    prefer-ip-address: true
+      
+    

@@ -1,0 +1,19 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://example:123456@192.168.0.239:6800/eureka/,http://example:123456@192.168.0.239:6801/eureka/
+spring:
+  cloud:
+    config:
+      name: example #配置文件名称
+      #uri: http://192.168.0.239:6840/
+      discovery:
+        enabled: true
+        service-id: example-config
+      profile: dev #配置文件环境
+      label: master #分支
+  rabbitmq: #Rabbitmq相关配置
+    host: 192.168.0.239
+    port: 5672
+    username: admin
+    password: admin

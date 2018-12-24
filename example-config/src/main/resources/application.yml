@@ -1,0 +1,29 @@
+server:
+  port: 6840
+spring:
+  application:
+    name: example-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://192.168.0.239:3000/root/example.git #配置git仓库地址
+          #username: root
+          #password: f27b7abB
+  rabbitmq: #Rabbitmq相关配置
+    host: 192.168.0.239
+    port: 5672
+    username: admin
+    password: admin
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://example:123456@192.168.0.239:6800/eureka/,http://example:123456@192.168.0.239:6801/eureka/
+  instance:
+    prefer-ip-address: true #将自己的IP地址注册到eureka中
+    ip-address: 192.168.0.239
+management:
+  security:
+    enabled: false #是否开启actuator安全认证

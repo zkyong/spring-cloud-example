@@ -1,0 +1,22 @@
+server:
+  port: 6821
+spring:
+  application:
+    name: example-order
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://example:123456@127.0.0.1:6800/eureka/,http://example:123456@127.0.0.1:6801/eureka/
+  instance:
+    prefer-ip-address: true #将自己的IP地址注册到eureka中
+    ip-address: 127.0.0.1
+example-product:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #负载均衡策略，默认为轮循，此处配置为随机
+management:
+  security:
+    enabled: false #是否开启actuator安全认证
+logging:
+  file: ${spring.application.name}.log
